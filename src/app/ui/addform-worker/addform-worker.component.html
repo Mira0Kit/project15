@@ -1,0 +1,61 @@
+<div class="row mb-3">
+  <div class="col-12">
+    <h5>Добавить сотрудника</h5>
+  </div>
+</div>
+<form [formGroup]="workerForm" (ngSubmit)="onAddWorker()">
+  <div class="row mb-2">
+    <div class="col-3">
+      <div class="form-group">
+        <label for="name">Имя</label>
+        <input type="text" class="form-control" placeholder="Имя" formControlName="name" />
+        <div class="alert alert-danger"
+          *ngIf="workerForm.controls['name'].invalid && workerForm.controls['name'].touched">
+          <strong>Некорректное имя</strong><br>
+          Имя должно начинаться с заглавной буквы и содержать только буквы
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="surname">Фамилия</label>
+        <input type="text" class="form-control" placeholder="Фамилия" formControlName="surname" />
+        <div class="alert alert-danger"
+          *ngIf="workerForm.controls['surname'].invalid && workerForm.controls['surname'].touched">
+          <strong>Некорректная фамилия</strong><br>
+          Фамилия должна начинаться с заглавной буквы и содержать только буквы
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="number">Телефон</label>
+        <input [textMask]="{mask: mask, showMask: true}"
+         type="text"
+          class="form-control"
+          formControlName="number">
+        <div class="alert alert-danger"
+          *ngIf="workerForm.controls['number'].invalid && workerForm.controls['number'].touched">
+          <strong>Некорректный номер телефона</strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="type">Тип работника</label>
+        <select class="form-control" formControlName="type">
+          <option [ngValue]="myWorkerType.programmer">Программист</option>
+          <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+          <option [ngValue]="myWorkerType.copywriter">Копирайтер</option>
+          <option [ngValue]="myWorkerType.manager">Менеджер</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <button type="submit" class="btn btn-outline-primary btn-md" [disabled]="!workerForm.valid">Добавить</button>
+    </div>
+  </div>
+
+</form>

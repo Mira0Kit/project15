@@ -1,0 +1,85 @@
+<ng-container *ngIf="workers.length > 0">
+  <div class="row">
+    <div class="col-12">
+      <h5>{{ title }}</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" [style.width]="'150px'">#</th>
+            <th scope="col" [style.width]="'17%'">Имя</th>
+            <th scope="col" [style.width]="'170px'">Фамилия</th>
+            <th scope="col" [style.width]="'200px'">Телефон</th>
+            <th scope="col" [style.width]="'160px'"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let worker of workers">
+            <th scope="row">{{ worker.id }}</th>
+            <td>{{ worker.name }}</td>
+            <td>{{ worker.surname }}</td>
+            <td>{{ worker.number }}</td>
+            <td>
+              <button class="btn btn-outline-danger" (click)="onDeleteWorker(worker.id)">
+                Удалить
+              </button>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col">
+                  <div ngbDropdown class="d-block">
+                    <button class="btn btn-outline-primary" id="dropdownForm1" (click)="fillForm(worker)"
+                      ngbDropdownToggle>
+                      Редактировать
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+                      <form [formGroup]="workerForm" (ngSubmit)="onChangeWorker(worker)" class="px-2 py-1">
+                        <div class="form-group">
+                          <label for="name">Имя</label>
+                          <input type="text" class="form-control" formControlName="name" placeholder="Имя" />
+                          <div class="alert alert-danger"
+                            *ngIf="workerForm.controls['name'].invalid && workerForm.controls['name'].touched">
+                            <strong>Некорректное имя</strong><br>
+                            Имя должно начинаться с заглавной буквы и содержать только буквы
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="surname">Фамилия</label>
+                          <input type="text" class="form-control" placeholder="Фамилия" formControlName="surname" />
+                          <div class="alert alert-danger"
+                            *ngIf="workerForm.controls['surname'].invalid && workerForm.controls['surname'].touched">
+                            <strong>Некорректная фамилия</strong><br>
+                            Фамилия должна начинаться с заглавной буквы и содержать только буквы
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="number">Телефон</label>
+                          <input [textMask]="{mask: mask, showMask: true}" type="text" class="form-control"
+                            formControlName="number">
+                          <div class="alert alert-danger"
+                            *ngIf="workerForm.controls['number'].invalid && workerForm.controls['number'].touched">
+                            <strong>Некорректный номер телефона</strong>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="type">Тип работника</label>
+                          <select class="form-control" formControlName="type">
+                            <option [ngValue]="myWorkerType.programmer">Программист</option>
+                            <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+                            <option [ngValue]="myWorkerType.copywriter">Копирайтер</option>
+                            <option [ngValue]="myWorkerType.manager">Менеджер</option>
+                          </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!workerForm.valid">Изменить</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
