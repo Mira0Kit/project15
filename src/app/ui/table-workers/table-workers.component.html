@@ -39,8 +39,7 @@
                           <input type="text" class="form-control" formControlName="name" placeholder="Имя" />
                           <div class="alert alert-danger"
                             *ngIf="workerForm.controls['name'].invalid && workerForm.controls['name'].touched">
-                            <strong>Некорректное имя</strong><br>
-                            Имя должно начинаться с заглавной буквы и содержать только буквы
+                            Некорректное имя
                           </div>
                         </div>
                         <div class="form-group">
@@ -48,17 +47,16 @@
                           <input type="text" class="form-control" placeholder="Фамилия" formControlName="surname" />
                           <div class="alert alert-danger"
                             *ngIf="workerForm.controls['surname'].invalid && workerForm.controls['surname'].touched">
-                            <strong>Некорректная фамилия</strong><br>
-                            Фамилия должна начинаться с заглавной буквы и содержать только буквы
+                            Некорректная фамилия
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="number">Телефон</label>
-                          <input [textMask]="{mask: mask, showMask: true}" type="text" class="form-control"
+                          <input [textMask]="{mask: mask, keepCharPositions:true}" type="text" class="form-control"
                             formControlName="number">
                           <div class="alert alert-danger"
                             *ngIf="workerForm.controls['number'].invalid && workerForm.controls['number'].touched">
-                            <strong>Некорректный номер телефона</strong>
+                            Некорректный номер телефона
                           </div>
                         </div>
                         <div class="form-group">

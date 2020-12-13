@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { stringify } from 'querystring';
 import { MyWorker } from '../models/worker.model';
 
 @Pipe({

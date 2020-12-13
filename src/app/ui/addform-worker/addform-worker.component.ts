@@ -17,8 +17,9 @@ export class AddformWorkerComponent {
 
   constructor() {
     this.workerForm = new FormGroup({
-      name: new FormControl(null, [Validators.pattern(/^([А-Я]{1}[а-я]{1,20}|[A-Z]{1}[a-z]{1,20})$/), Validators.required]),
-      surname: new FormControl(null, [Validators.pattern(/^([А-Я]{1}[а-я]{1,20}|[A-Z]{1}[a-z]{1,20})$/), Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+      //surname: new FormControl(null, [Validators.pattern(/^([А-Я]{1}[а-я]{1,20}|[A-Z]{1}[a-z]{1,20})$/), Validators.required]),
+      surname: new FormControl(null, [Validators.required]),
       number: new FormControl(null, [Validators.pattern(/^[+,0-9,(,),-]+$/), Validators.required]),
       type: new FormControl(0, [Validators.required])
     })

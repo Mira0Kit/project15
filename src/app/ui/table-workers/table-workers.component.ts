@@ -10,7 +10,7 @@ import { MyWorker, MyWorkerType } from 'src/app/shared/models/worker.model';
 export class TableWorkersComponent  {
   @Input() title: string;
   @Input() workers: MyWorker[] = [];
-  @Input() myWorkerType = MyWorkerType;
+  myWorkerType = MyWorkerType;
   workerForm: FormGroup;
 
   public mask = ['+', '7', '(',/[1-9]/, /\d/, /\d/,')', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/];
@@ -20,8 +20,9 @@ export class TableWorkersComponent  {
 
   constructor() {
     this.workerForm = new FormGroup({
-      name: new FormControl(null, [Validators.pattern(/^([А-Я]{1}[а-я]{1,20}|[A-Z]{1}[a-z]{1,20})$/), Validators.required]),
-      surname: new FormControl(null, [Validators.pattern(/^([А-Я]{1}[а-я]{1,20}|[A-Z]{1}[a-z]{1,20})$/), Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+      //surname: new FormControl(null, [Validators.pattern(/^([А-Я]{1}[а-я]{1,20}|[A-Z]{1}[a-z]{1,20})$/), Validators.required]),
+      surname: new FormControl(null, [Validators.required]),
       number: new FormControl(null, [Validators.pattern(/^[+,0-9,(,),-]+$/), Validators.required]),
       type: new FormControl(0, [Validators.required])
     });
